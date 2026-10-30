@@ -1,0 +1,63 @@
+# CreditCovered
+
+> CreditCovered helps South African consumers understand credit life insurance for eligible credit agreements, and gives business partners (credit providers and debt counsellors) a broker-led workspace to submit and track applications. An enquiry, upload or application does not start cover: cover depends on the insurer's terms and is confirmed once the insurer-issued policy is recorded.
+
+Benefits, eligibility, exclusions and waiting periods vary by policy. Not every insured event pays off the full debt. Please point people to the actual policy terms rather than summarising benefits as guaranteed.
+
+## Credit life cover
+
+- [Credit life explained](https://creditcovered.co.za/credit-life-insurance): What credit life insurance may cover, how benefits can work and what to check before applying.
+- [Personal loan cover](https://creditcovered.co.za/personal-loan-cover): Credit life options that may be available for an eligible personal loan.
+- [Vehicle finance cover](https://creditcovered.co.za/vehicle-finance-cover): Credit life protection linked to eligible vehicle finance.
+- [Home loan cover](https://creditcovered.co.za/home-loan-cover): Credit life options for an eligible mortgage agreement.
+- [Review existing cover](https://creditcovered.co.za/existing-credit-life-cover): Understand the protection you already have before changing anything.
+
+## Resources
+
+Plain-language answers to common credit life questions for South African consumers, based on section 106 of the National Credit Act, the Credit Life Insurance Regulations (2017) and National Credit Regulator guidelines.
+
+- [All resources](https://creditcovered.co.za/resources): Questions grouped by topic.
+- [What is credit life insurance?](https://creditcovered.co.za/resources/what-is-credit-life-insurance): Cover linked to one credit agreement, and how it differs from ordinary life cover.
+- [How much does credit life insurance cost?](https://creditcovered.co.za/resources/how-much-does-credit-life-insurance-cost): The regulated monthly ceilings per R1 000 and what affects the price.
+- [How is credit life insurance calculated?](https://creditcovered.co.za/resources/how-is-credit-life-insurance-calculated): The formula, the basis it is charged on and worked examples of the ceilings.
+- [Is credit life insurance compulsory?](https://creditcovered.co.za/resources/is-credit-life-insurance-compulsory): When a credit provider may require it and your right to choose your own policy.
+- [Does credit life cover retrenchment?](https://creditcovered.co.za/resources/does-credit-life-cover-retrenchment): What the unemployment benefit pays, and when it does not.
+- [Does credit life insurance cover disability?](https://creditcovered.co.za/resources/does-credit-life-insurance-cover-disability): Permanent and temporary disability benefits, waiting periods and exclusions.
+- [What happens to my loan if I die?](https://creditcovered.co.za/resources/what-happens-to-my-loan-if-i-die): With and without credit life cover.
+- [What happens to car finance if I die?](https://creditcovered.co.za/resources/what-happens-to-car-finance-if-i-die): With and without credit life cover.
+- [What happens to my bond if I die?](https://creditcovered.co.za/resources/what-happens-to-my-bond-if-i-die): With and without credit life cover.
+- [Can I cancel credit life insurance?](https://creditcovered.co.za/resources/can-i-cancel-credit-life-insurance): Required versus optional cover.
+- [Can I change my credit life insurer?](https://creditcovered.co.za/resources/can-i-change-my-credit-life-insurer): The right to substitute a compliant policy.
+- [Can I replace my bank's credit life insurance?](https://creditcovered.co.za/resources/can-i-replace-my-banks-credit-life-insurance): What to compare and the steps to follow.
+- [Credit life insurance for personal loans](https://creditcovered.co.za/resources/credit-life-insurance-for-personal-loans): How cover works on an unsecured personal loan, and the R4.50 per R1 000 ceiling.
+- [Credit life insurance for vehicle finance](https://creditcovered.co.za/resources/credit-life-insurance-for-vehicle-finance): Protection for the debt, not the car, and how it differs from motor and shortfall cover.
+- [Credit life insurance for home loans](https://creditcovered.co.za/resources/credit-life-insurance-for-home-loans): The lower R2 per R1 000 ceiling, joint bonds and bond cover.
+- [Credit life insurance for credit cards](https://creditcovered.co.za/resources/credit-life-insurance-for-credit-cards): Cover on revolving credit, with the premium ceiling based on average use of the limit.
+- [Credit life insurance during debt review](https://creditcovered.co.za/resources/credit-life-insurance-during-debt-review): Why premiums still matter, based on the NCR's debt review guidelines.
+- [How to claim credit life insurance](https://creditcovered.co.za/resources/how-to-claim-credit-life-insurance): The steps, typical documents, the insurer's duties and what to do if a claim is rejected.
+- [Credit life insurance exclusions explained](https://creditcovered.co.za/resources/credit-life-insurance-exclusions-explained): The exclusions Regulation 4 allows for death, disability and unemployment, and waiting periods.
+- [How do I know if I already have credit life insurance?](https://creditcovered.co.za/resources/how-do-i-know-if-i-already-have-credit-life-insurance): Where to look and what to ask your credit provider.
+- [Credit life insurance vs life insurance](https://creditcovered.co.za/resources/credit-life-insurance-vs-life-insurance): Who is paid, what is covered and why one does not replace the other.
+- [Who gets paid when credit life insurance pays out?](https://creditcovered.co.za/resources/who-gets-paid-when-credit-life-insurance-pays-out): The credit provider is paid, not the family, and what happens afterwards.
+
+## How it works and help
+
+- [How it works](https://creditcovered.co.za/how-it-works): The broker-led process, from first enquiry to confirmation of issued cover.
+- [FAQs](https://creditcovered.co.za/faq): Plain-language answers about credit life cover and the application process.
+- [Claims guidance](https://creditcovered.co.za/claims): Start with the insurer-issued policy documents and the claims contact shown there.
+- [Request a quote](https://creditcovered.co.za/quote): A short enquiry form. No medical history, identity documents or bank details are requested at the start.
+- [Contact](https://creditcovered.co.za/contact): Speak to the CreditCovered team.
+
+## For business partners
+
+- [For business partners](https://creditcovered.co.za/partners): A workspace for organisations that manage or support borrowers.
+- [Credit providers](https://creditcovered.co.za/partners/credit-providers): Individual submissions, bulk uploads and tracking through a broker-led process.
+- [Debt counsellors](https://creditcovered.co.za/partners/debt-counsellors): Application support designed around the debt counsellor's role.
+- [Become a partner](https://creditcovered.co.za/partners/apply): Partner application. New accounts require approval before access.
+
+## Optional
+
+- [About CreditCovered](https://creditcovered.co.za/about): Who we are and how we work.
+- [Privacy](https://creditcovered.co.za/privacy): Privacy information (draft wording pending review).
+- [Complaints](https://creditcovered.co.za/complaints): Complaints route (draft wording pending review).
+- [Disclosures](https://creditcovered.co.za/disclosures): Regulatory and service disclosures (pending verification).

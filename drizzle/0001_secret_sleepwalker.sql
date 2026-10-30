@@ -1,0 +1,1 @@
+CREATE INDEX `enquiries_owner_created` ON `enquiries` (`owner`,`created`);

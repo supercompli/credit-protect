@@ -1,0 +1,8 @@
+import type { Metadata } from 'next';
+import { DM_Sans } from 'next/font/google';
+import './globals.css';
+// Variable font, so every weight the stylesheet uses (400-750) is covered.
+const dmSans=DM_Sans({subsets:['latin'],display:'swap',variable:'--font-dm-sans'});
+// Social image URLs are resolved against this, so they must be the public domain, not localhost.
+export const metadata:Metadata={metadataBase:new URL('https://creditcovered.co.za'),title:{default:'CreditCovered | Protect Your Loan with Credit Life Cover',template:'%s | CreditCovered'},description:'Explore credit life insurance for eligible credit agreements. Clear explanations, a simple quote enquiry and simple partner administration.',openGraph:{title:'Credit Life Protection | CreditCovered',description:'A simpler way to protect your repayments. Explore credit life cover for your personal loan, car finance or home loan. Get a quote.'},twitter:{card:'summary_large_image',title:'Credit Life Protection | CreditCovered',description:'A simpler way to protect your repayments. Explore credit life cover for your personal loan, car finance or home loan. Get a quote.'},icons:{icon:'/favicon.svg'},alternates:{canonical:'./',types:{'text/plain':[{url:'/llms.txt',title:'llms.txt'}]}}};
+export default function Layout({children}:{children:React.ReactNode}){return <html lang="en-ZA" className={dmSans.variable}><body><a className="skip-link" href="#main-content">Skip to main content</a><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify({"@context":"https://schema.org","@type":"WebSite",name:"CreditCovered",url:"https://creditcovered.co.za",description:"Credit life insurance enquiries and simple partner administration"})}}/>{children}</body></html>}

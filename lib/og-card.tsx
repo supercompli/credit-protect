@@ -1,0 +1,107 @@
+import { readFile } from "node:fs/promises";
+import path from "node:path";
+import { ImageResponse } from "next/og";
+
+// Brand colours, taken from app/globals.css and public/favicon.svg.
+const NAVY = "#102e40"; // top bar and footer background
+const TEAL = "#007e7b"; // primary
+const TEAL_LIGHT = "#86d2cd"; // teal lifted for contrast on the dark ground (about 6:1)
+const MIST = "#dce9ed"; // light text used on the navy top bar
+
+// satori reads TTF/OTF/WOFF, not WOFF2, so the app ships two static WOFF files.
+// Literal paths keep Next's file tracing scoped to app/_fonts. If the files cannot
+// be read the card still renders, in the default font.
+async function loadFonts() {
+  try {
+    const [bold, medium] = await Promise.all([
+      readFile(path.join(process.cwd(), "app", "_fonts", "dm-sans-latin-700-normal.woff")),
+      readFile(path.join(process.cwd(), "app", "_fonts", "dm-sans-latin-500-normal.woff")),
+    ]);
+    return [
+      { name: "DM Sans", data: bold, weight: 700 as const, style: "normal" as const },
+      { name: "DM Sans", data: medium, weight: 500 as const, style: "normal" as const },
+    ];
+  } catch (error) {
+    console.error("CreditCovered share card: DM Sans unavailable, using the default font.", error);
+    return undefined;
+  }
+}
+
+/** The 1200x630 card shared by opengraph-image and twitter-image. */
+export async function renderShareCard(size: { width: number; height: number }) {
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          position: "relative",
+          fontFamily: "DM Sans",
+          background: `linear-gradient(135deg, #0a2230 0%, ${NAVY} 55%, #0d4548 100%)`,
+        }}
+      >
+        {/* Full-bleed glow: a clipped circle box left a visible seam. */}
+        <div
+          style={{
+            position: "absolute",
+            left: 0,
+            top: 0,
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            background: "radial-gradient(circle at 940px 150px, rgba(0,126,123,0.55) 0%, rgba(0,126,123,0) 520px)",
+          }}
+        />
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            padding: "70px 80px",
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <svg width="96" height="96" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="40" height="40" rx="9" fill={TEAL} />
+              <path d="M20 7 30 11v10c0 6-10 12-10 12S10 27 10 21V11Z" stroke="white" strokeWidth="2.5" />
+              <path d="m15 20 4 4 7-8" stroke="white" strokeWidth="2.5" />
+            </svg>
+            <div style={{ display: "flex", marginLeft: 28, fontSize: 62, letterSpacing: -2, color: "white" }}>
+              <span style={{ fontWeight: 700 }}>Credit</span>
+              <span style={{ fontWeight: 500, color: TEAL_LIGHT }}>Covered</span>
+            </div>
+          </div>
+
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <div style={{ display: "flex", fontSize: 72, fontWeight: 700, lineHeight: 1.04, letterSpacing: -3, color: "white" }}>
+              Credit Life Protection
+            </div>
+            <div style={{ display: "flex", marginTop: 20, fontSize: 36, fontWeight: 500, color: MIST }}>
+              Death. Disability. Retrenchment. Maternity.
+            </div>
+          </div>
+
+          <div style={{ display: "flex" }}>
+            <div
+              style={{
+                display: "flex",
+                padding: "16px 40px",
+                borderRadius: 9999,
+                background: TEAL,
+                fontSize: 32,
+                fontWeight: 700,
+                color: "white",
+              }}
+            >
+              Get a Quote
+            </div>
+          </div>
+        </div>
+      </div>
+    ),
+    { ...size, fonts: await loadFonts() },
+  );
+}

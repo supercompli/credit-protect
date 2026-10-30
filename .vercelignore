@@ -1,0 +1,26 @@
+# Local dependency caches and generated output
+node_modules/
+.sites-runtime/
+.next/
+.vinext/
+out/
+dist/
+.wrangler/
+coverage/
+*.tsbuildinfo
+
+# Local credentials, uploaded documents, and tool state
+.env*
+!.env.example
+.neon
+.data/
+.agents/
+.codex/
+outputs/
+work/
+
+# Local logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
