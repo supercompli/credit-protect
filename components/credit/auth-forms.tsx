@@ -10,8 +10,8 @@ function Input({name,label,type='text',autoComplete}:{name:string;label:string;t
 export function SignInForm({returnTo,local}:{returnTo:string;local:boolean}){
   const [state,action,pending]=useActionState<AuthState,FormData>(signInAction,null);
   if(local)return <form className="form-card" action={action}>
-    <h2>Continue to the demo</h2>
-    <p>Local mode: there are no accounts or passwords. This saves an anonymous ID in a cookie on this device so your demonstration workspace stays separate.</p>
+    <h2>Continue</h2>
+    <p>Local mode: there are no accounts or passwords. This saves an anonymous ID in a cookie on this device so your workspace stays separate.</p>
     <input type="hidden" name="return_to" value={returnTo}/>
     {state?.error&&<p className="error" role="alert">{state.error}</p>}
     <div className="form-actions"><button className="btn" type="submit" disabled={pending}>{pending?'Continuing…':'Continue'}</button></div>

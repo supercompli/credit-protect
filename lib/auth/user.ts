@@ -17,7 +17,7 @@ export async function getUser(): Promise<AppUser | null> {
     if (!neonAuthEnabled()) {
       const userId = await readLocalUserId();
       return userId
-        ? { userId, displayName: "Local demo user", email: "local@localhost", fullName: null }
+        ? { userId, displayName: "Local user", email: "local@localhost", fullName: null }
         : null;
     }
 

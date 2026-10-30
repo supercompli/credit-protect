@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 
 // Local-mode identity: an anonymous ID in a cookie, with no password. It only
-// keeps each browser's demo workspace separate and is for local use. Hosted
+// keeps each browser's workspace separate and is for local use. Hosted
 // deployments must configure Neon Auth instead, so this refuses to run there.
 export const LOCAL_COOKIE = "cp_local_user";
 

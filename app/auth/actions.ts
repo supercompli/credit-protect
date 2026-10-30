@@ -3,13 +3,17 @@ import {redirect} from 'next/navigation';
 import {getAuth,neonAuthEnabled} from '@/lib/auth/server';
 import {startLocalSession,endLocalSession} from '@/lib/auth/local';
 import {safeReturnPath} from '@/lib/auth/user';
+import {portalEnabled} from '@/lib/features';
 
 export type AuthState={error:string}|null;
 
-// After signing in, the demo role picker is the next step.
+const COMING_SOON='Partner login is coming soon.';
+
+// After signing in, the role picker is the next step.
 const landing=(formData:FormData)=>safeReturnPath(String(formData.get('return_to')||''),'/login');
 
 export async function signInAction(_prev:AuthState,formData:FormData):Promise<AuthState>{
+  if(!portalEnabled())return {error:COMING_SOON};
   if(!neonAuthEnabled()){
     try{await startLocalSession();}catch(e){return {error:e instanceof Error?e.message:'Local sign-in is unavailable.'};}
     redirect(landing(formData));
@@ -23,6 +27,7 @@ export async function signInAction(_prev:AuthState,formData:FormData):Promise<Au
 }
 
 export async function signUpAction(_prev:AuthState,formData:FormData):Promise<AuthState>{
+  if(!portalEnabled())return {error:COMING_SOON};
   if(!neonAuthEnabled())return {error:'Accounts are not enabled in local mode. Use Continue on the sign-in page.'};
   const name=String(formData.get('name')||'').trim();
   const email=String(formData.get('email')||'').trim();

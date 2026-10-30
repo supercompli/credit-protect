@@ -2,6 +2,9 @@
 //   - renderConfirmationEmail: to the person who submitted the form
 //   - renderAdminEmail:        to the team (MAIL_TO)
 //
+// The confirmation email carries a "Chat on WhatsApp" button (prefilled with the
+// reference); the team notification does not.
+//
 // Email clients ignore most modern CSS, so both are table-based with inline
 // styles, a 600px card, a bulletproof button and a small <style> block for
 // mobile and dark mode. Colours mirror app/globals.css.
@@ -21,6 +24,11 @@ export type RenderedEmail = { subject: string; html: string; text: string };
 const SITE_URL = (process.env.SITE_URL || "https://creditcovered.co.za").replace(/\/+$/, "");
 const MAX_VALUE_LENGTH = 2000;
 
+// The team's WhatsApp line, shown on the confirmation emails only. wa.me wants
+// the number in international format with no "+", spaces or leading zero.
+const WHATSAPP_NUMBER = "27835756352";
+const WHATSAPP_DISPLAY = "+27 83 575 6352";
+
 const c = {
   navy: "#102e40",
   teal: "#007e7b",
@@ -35,6 +43,7 @@ const c = {
   amber: "#fff8eb",
   amberBorder: "#efe0bd",
   amberText: "#7b622d",
+  whatsapp: "#25d366",
 };
 
 const FONT = "'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif";
@@ -55,6 +64,11 @@ const KIND = {
     notice:
       "This email confirms we've received your enquiry. It is not a quotation and does not confirm insurance cover. If you already have credit life cover, please don't change or cancel it until you've confirmed the replacement arrangements in writing.",
     cta: { label: "Credit life, explained", href: "/credit-life-insurance" },
+    whatsapp: {
+      title: "Want to speed up your quote?",
+      text: "Message us on WhatsApp and quote your reference. It helps us find your enquiry quickly.",
+      message: (id: string) => `Hi CreditCovered, I submitted a quote enquiry on your website. My reference is ${id}.`,
+    },
   },
   partner: {
     noun: "partner application",
@@ -71,6 +85,11 @@ const KIND = {
     notice:
       "This email confirms we've received your application. It does not approve an account or give access to borrower information.",
     cta: { label: "See how it works", href: "/how-it-works" },
+    whatsapp: {
+      title: "Want to speed things up?",
+      text: "Message us on WhatsApp and quote your reference. It helps us find your application quickly.",
+      message: (id: string) => `Hi CreditCovered, I submitted a partner application on your website. My reference is ${id}.`,
+    },
   },
   contact: {
     noun: "contact message",
@@ -86,6 +105,11 @@ const KIND = {
     notice:
       "Please don't send identity documents, bank details or medical information by email. If we need documents from you, we'll point you to a secure way to share them.",
     cta: { label: "Credit life, explained", href: "/credit-life-insurance" },
+    whatsapp: {
+      title: "Prefer WhatsApp?",
+      text: "Message us on WhatsApp and quote your reference. It helps us find your message quickly.",
+      message: (id: string) => `Hi CreditCovered, I sent a message on your website. My reference is ${id}.`,
+    },
   },
 } as const;
 
@@ -162,10 +186,27 @@ function url(path: string): string {
 // ---------------------------------------------------------------------------
 // shared layout
 
-function button(href: string, text: string, fill: string = c.teal): string {
+function button(href: string, text: string, fill: string = c.teal, color: string = "#ffffff"): string {
   return `<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td align="center" bgcolor="${fill}" style="background:${fill};border-radius:8px;">
-<a href="${esc(href)}" style="display:inline-block;padding:14px 26px;font-family:${FONT};font-size:15px;font-weight:700;line-height:1;color:#ffffff;text-decoration:none;border-radius:8px;">${esc(text)}</a>
+<a href="${esc(href)}" style="display:inline-block;padding:14px 26px;font-family:${FONT};font-size:15px;font-weight:700;line-height:1;color:${color};text-decoration:none;border-radius:8px;">${esc(text)}</a>
 </td></tr></table>`;
+}
+
+function whatsappUrl(kind: EnquiryKind, id: string): string {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(KIND[kind].whatsapp.message(id))}`;
+}
+
+function whatsappBlock(kind: EnquiryKind, id: string): string {
+  const { title, text } = KIND[kind].whatsapp;
+  return `<tr><td class="px" style="padding:6px 36px 0;">
+<table role="presentation" class="rule" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid ${c.border};border-radius:12px;">
+<tr><td style="padding:22px 24px;font-family:${FONT};">
+<div class="tx" style="font-size:16px;font-weight:700;line-height:1.4;color:${c.text};">${esc(title)}</div>
+<div class="mut" style="margin:4px 0 16px;font-size:14px;line-height:1.6;color:${c.muted};">${esc(text)}</div>
+${button(whatsappUrl(kind, id), "Chat on WhatsApp", c.whatsapp, c.navy)}
+<div class="fine" style="margin-top:14px;font-size:12px;line-height:1.6;color:${c.fine};">${esc(WHATSAPP_DISPLAY)}. Please don't share ID numbers, bank details or medical information in the chat.</div>
+</td></tr></table>
+</td></tr>`;
 }
 
 function shell(opts: { title: string; preheader: string; header: string; body: string; footer: string }): string {
@@ -319,6 +360,7 @@ export function renderConfirmationEmail(input: {
 ${steps}
 </table>
 </td></tr>
+${whatsappBlock(kind, id)}
 <tr><td class="px" style="padding:6px 36px 0;">
 <table role="presentation" class="warn" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="${c.amber}" style="background:${c.amber};border:1px solid ${c.amberBorder};border-radius:10px;">
 <tr><td class="warn-tx" style="padding:16px 20px;font-family:${FONT};font-size:14px;line-height:1.65;color:${c.amberText};"><strong>Please note.</strong> ${esc(copy.notice)}</td></tr>
@@ -355,6 +397,10 @@ ${button(url(copy.cta.href), copy.cta.label)}
     "",
     "WHAT HAPPENS NEXT",
     ...copy.steps.map(([title, line], i) => `${i + 1}. ${title}: ${line}`),
+    "",
+    `${copy.whatsapp.title} ${copy.whatsapp.text}`,
+    `WhatsApp ${WHATSAPP_DISPLAY}: ${whatsappUrl(kind, id)}`,
+    "Please don't share ID numbers, bank details or medical information in the chat.",
     "",
     `Please note: ${copy.notice}`,
     "",
